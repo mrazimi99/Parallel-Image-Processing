@@ -18,7 +18,7 @@ int main()
 
 	// Read images
 	cv::Mat in_img1 = cv::imread("CA03__Q2__Image__01.png", cv::IMREAD_GRAYSCALE);
-	cv::Mat in_img2 = cv::imread("CA03__Q2__Image__02.png");
+	cv::Mat in_img2 = cv::imread("CA03__Q2__Image__02.png", cv::IMREAD_GRAYSCALE);
 
 	cv::Mat out_img(in_img1.rows, in_img1.cols, CV_8U);
 
@@ -38,19 +38,12 @@ int main()
 	// Serial implementation
 	gettimeofday(&start, NULL);
 
-	// for(int row = 0; row < NROWS; row++)
-	// {
-	// 	for(int col = 0; col < NCOLS; col++)
-	// 	{
-	// 		*(out_image + row * NCOLS + col) = *(in_image1 + row * NCOLS + col) + *(in_image2 + row * in_img2.cols + col) * 0.5 * (row < in_img2.rows && col < in_img2.cols);
-	// 		// *(out_image + row * NCOLS + col) = *(out_image + row * NCOLS + col) > 255 ? 255 : *(out_image + row * NCOLS + col);
-	// 	}
-	// }
-	for(int row = 0; row < in_img2.rows; row++)
+	for(int row = 0; row < NROWS; row++)
 	{
-		for(int col = 0; col < in_img2.cols; col++)
+		for(int col = 0; col < NCOLS; col++)
 		{
-			*(out_image + row * NCOLS + col) = *(in_image2 + row * in_img2.cols + col) * 0.5 * (row < in_img2.rows && col < in_img2.cols);
+			*(out_image + row * NCOLS + col) = *(in_image1 + row * NCOLS + col) + *(in_image2 + row * in_img2.cols + col) * 0.5 * (row < in_img2.rows && col < in_img2.cols);
+			// *(out_image + row * NCOLS + col) = *(out_image + row * NCOLS + col) > 255 ? 255 : *(out_image + row * NCOLS + col);
 		}
 	}
 
