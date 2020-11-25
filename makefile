@@ -12,17 +12,16 @@ LIBFILE1=-lopencv_gapi -lopencv_stitching -lopencv_aruco -lopencv_bgsegm -lopenc
 
 CST11=-std=c++11
 
-# SOURCE=Q1.cpp
-SOURCE=Q2.cpp
+SOURCE=Q1.cpp
+# SOURCE=Q2.cpp
 
-all: clean main
+all: main
 
 main: main.o 
-	$(CC) main.o $(LIBDIR) $(LIBFILE) $(CST11) -o main
+	$(CC) main.o $(LIBDIR) $(LIBFILE) $(CST11) -o q1.out
 
 main.o: $(SOURCE)
 	$(CC) $(CFLAGS) $(INCDIR) $(CST11) $(SOURCE) -o main.o
 
 clean:
-	rm -f *o main
-
+	rm -f *o *.out
